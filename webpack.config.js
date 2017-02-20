@@ -1,6 +1,3 @@
-const webpack = require('webpack');
-const path = require('path');
-
 module.exports = {
 	devServer: {
 		contentBase: './public',
@@ -14,7 +11,7 @@ module.exports = {
 	output: {
 		path: './public/js',
 		filename: 'bundle.js',
-		publicPath: "http://localhost:3001/js/",
+		publicPath: 'http://localhost:3001/js/',
 	},
 	module: {
 		loaders: [
@@ -33,4 +30,4 @@ module.exports = {
 			}
 		]
 	}
-}
+};

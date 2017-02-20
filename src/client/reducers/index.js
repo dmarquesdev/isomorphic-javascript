@@ -1,1 +1,7 @@
-/* This file should export all reducers files from this folder */
+import { combineReducers } from 'redux';
+
+const rootReducer = combineReducers({
+
+});
+
+export default rootReducer;

@@ -11,7 +11,7 @@ export default (app) => {
       } else if (redirect) {
         res.redirect(redirect.pathname + redirect.search);
       } else if (props) {
-        const reactOutput = renderToString(<RouterContext {...props}/>);
+        const reactOutput = renderToString(<RouterContext {...props} />);
         res.render('index.ejs', { reactOutput });
       } else {
         res.status(404).send('Not found!');
