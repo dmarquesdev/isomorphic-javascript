@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({
+import PointsReducer from './PointsReducer';
 
+const rootReducer = combineReducers({
+  points: PointsReducer
 });
 
 export default rootReducer;

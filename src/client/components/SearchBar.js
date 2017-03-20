@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Icon from './Icon';
+
+const ENTER_KEYCODE = 13;
 
 class SearchBar extends Component {
   constructor(props) {
@@ -11,13 +13,17 @@ class SearchBar extends Component {
     };
   }
 
-  onSearchClick() {
-    console.log('Search!');
+  onSearch() {
+    this.props.onSearch(this.state.searchTerm);
   }
 
   onSearchChange(event) {
     const searchTerm = event.target.value;
-    this.setState({ searchTerm });
+    if (event.keyCode === ENTER_KEYCODE) {
+      this.props.onSearch(searchTerm);
+    } else {
+      this.setState({ searchTerm });
+    }
   }
 
   render() {
@@ -36,7 +42,7 @@ class SearchBar extends Component {
             <div className="input-group-btn">
               <button
                 className="btn btn-primary"
-                onClick={this.onSearchClick.bind(this)}
+                onClick={this.onSearch.bind(this)}
               >
                 <Icon name="search" />
               </button>
@@ -47,5 +53,9 @@ class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  onSearch: PropTypes.func.isRequired
+};
 
 export default SearchBar;

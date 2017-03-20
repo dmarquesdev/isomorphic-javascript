@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import SearchBar from './SearchBar';
 import FlatIcon from './FlatIcon';
@@ -14,7 +14,9 @@ class Home extends Component {
               <h1>São Paulo</h1>
               <h1>Criminal Records</h1>
             </div>
-            <SearchBar />
+            <SearchBar
+              onSearch={() => { this.context.router.push('/mapa'); }}
+            />
           </div>
         </div>
 
@@ -42,5 +44,9 @@ class Home extends Component {
     );
   }
 }
+
+Home.contextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 export default Home;
