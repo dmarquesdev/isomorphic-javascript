@@ -9,7 +9,7 @@ import {
   FETCH_POINTS_FAILURE
 } from './types';
 
-const API_URL = process.NODE_ENV === 'production' ? 
+const API_URL = process.env.NODE_ENV === 'production' ? 
 		config.PROD_API_URL : 
 		config.DEV_API_URL;
 
