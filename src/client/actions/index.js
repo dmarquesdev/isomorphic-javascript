@@ -8,14 +8,16 @@ import {
   FETCH_POINTS_FAILURE
 } from './types';
 
-const API_URL = 'http://localhost:8080/criminal-report-api/report';
+const API_URL = 'http://localhost:8080/criminal-report-api';
 
 export const fetchPoints = ({ properties }) => {
   const params = objectToURLParameters(properties);
 
+  console.log(params);
+
   return (dispatch) => {
     axios
-      .get(`${API_URL}?${params}`)
+      .get(`${API_URL}/points?${params}`)
       .then((response) => {
         dispatch({
           type: FETCH_POINTS_SUCCESS,

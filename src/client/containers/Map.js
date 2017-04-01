@@ -6,7 +6,7 @@ import { fetchPoints } from '../actions';
 
 class Map extends Component {
   onSearch(term) {
-    this.props.fetchPoints({ age: term });
+    this.props.fetchPoints({ year: term });
   }
 
   markerList() {

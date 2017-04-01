@@ -1,24 +1,24 @@
 module.exports = {
 	devServer: {
-		contentBase: './public',
+		contentBase: __dirname + '/public',
 		headers: { 'Access-Control-Allow-Origin': '*' }
 	},
 	entry: [
 		'webpack-dev-server/client?http://localhost:3001',
 		'webpack/hot/only-dev-server',
-		'./src/client/index.js'
+		__dirname + '/src/client/index.js'
 	],
 	output: {
-		path: './public/js',
+		path: __dirname + '/public/js',
 		filename: 'bundle.js',
 		publicPath: 'http://localhost:3001/js/',
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.jsx?$/,
-        loaders: ['react-hot'],
-        exclude: /node_modules/
+		        loaders: ['react-hot-loader'],
+   			    exclude: /node_modules/
 			},
 			{
 				loader: 'babel-loader',
