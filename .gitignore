@@ -16,3 +16,4 @@ npm-debug.log
 
 public/js/bundle*.js
 *.swp
+src/shared/config.js
