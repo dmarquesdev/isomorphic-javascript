@@ -8,7 +8,9 @@ import {
   FETCH_POINTS_FAILURE
 } from './types';
 
-const API_URL = 'http://localhost:8080/criminal-report-api';
+const API_URL = process.NODE_ENV === 'production' ? 
+		config.PROD_API_URL : 
+		config.DEV_API_URL;
 
 export const fetchPoints = ({ properties }) => {
   const params = objectToURLParameters(properties);
