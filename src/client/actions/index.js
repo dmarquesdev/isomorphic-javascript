@@ -2,6 +2,7 @@
 import axios from 'axios';
 
 import { objectToURLParameters } from '../../shared/util';
+import config from '../../shared/config';
 
 import {
   FETCH_POINTS_SUCCESS,
