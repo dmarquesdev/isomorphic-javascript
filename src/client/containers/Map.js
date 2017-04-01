@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { GoogleMap, SearchBar } from '../components';
-import { fetchPoints } from '../actions';
+import { GoogleMap, SearchBar, Marker } from '../components';
+import { fetchPoints, fetchPoint } from '../actions';
 
 class Map extends Component {
   onSearch(term) {
     this.props.fetchPoints({ year: term });
   }
 
-  markerList() {
-    // TODO make markerlist
-    return [];
+	onMarkerClick(id) {
+    this.props.fetchPoint(id);
+	}
+
+  markerList(points) {
+		return points.map((point) => (
+          <Marker
+            id={point.idBO}
+            key={point.idBO}
+            lat={point.lat}
+            lng={point.lon}
+            onClick={this.onMarkerClick.bind(this)}
+          />
+    ));
   }
 
   render() {
@@ -31,4 +42,4 @@ const mapStateToProps = (state) => {
   return { points: list };
 };
 
-export default connect(mapStateToProps, { fetchPoints })(Map);
+export default connect(mapStateToProps, { fetchPoints, fetchPoint })(Map);
