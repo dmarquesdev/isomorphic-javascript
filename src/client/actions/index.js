@@ -38,7 +38,7 @@ export const fetchPoints = (properties) => {
 
 export const fetchPoint = (id) => (dispatch) => {
   axios
-    .get(`${API_URL}/reports?idReport=${id}`)
+    .get(`${API_URL}/report?idReport=${id}`)
     .then((response) => {
       dispatch({
         type: FETCH_POINT_SUCCESS,
