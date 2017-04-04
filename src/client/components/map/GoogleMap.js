@@ -1,16 +1,18 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 
-import Marker from './Marker';
+import config from '../../../shared/config';
 
-const GoogleMap = ({ center, zoom, markers }) => {
-  const markerList = markers.map((marker) => <Marker {...marker} />);
-  return (
-    <GoogleMapReact center={center} zoom={zoom}>
-      {markerList}
+const GoogleMap = ({ center, zoom, markers }) => (
+    <GoogleMapReact
+      center={center}
+      zoom={zoom}
+      minZoom={8}
+      bootstrapURLKeys={{ key: config.GMAPS_API_KEY }}
+    >
+      {markers}
     </GoogleMapReact>
-  );
-};
+);
 
 GoogleMap.defaultProps = {
   center: [-23.533773, -46.625290],

@@ -1,6 +1,8 @@
 import {
   FETCH_POINTS_SUCCESS,
-  FETCH_POINTS_FAILURE
+  FETCH_POINTS_FAILURE,
+  FETCH_POINT_SUCCESS,
+  FETCH_POINT_FAILURE
 } from '../actions/types';
 
 const INITIAL_STATE = { list: [], selected: null, error: null };
@@ -11,6 +13,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, list: action.payload, selected: null };
     case FETCH_POINTS_FAILURE:
       return { ...INITIAL_STATE, error: action.payload };
+    case FETCH_POINT_SUCCESS:
+      return { ...state, selected: action.payload };
+    case FETCH_POINT_FAILURE:
+      return { ...state, error: action.payload };
     default:
       return state;
   }

@@ -14,4 +14,6 @@ build
 .env
 npm-debug.log
 
-public/js/bundle.js
+public/js/bundle*.js
+*.swp
+src/shared/config.js
