@@ -12,10 +12,10 @@ import {
 } from './types';
 
 const API_URL = process.env.NODE_ENV === 'production' ?
-		config.PROD_API_URL :
-		config.DEV_API_URL;
+  config.PROD_API_URL :
+  config.DEV_API_URL;
 
-export const fetchPoints = (properties) => {
+export const fetchPoints = (properties, callback) => {
   const params = objectToURLParameters(properties);
 
   return (dispatch) => {
@@ -26,17 +26,19 @@ export const fetchPoints = (properties) => {
           type: FETCH_POINTS_SUCCESS,
           payload: response.data
         });
+        callback();
       })
       .catch((error) => {
         dispatch({
           type: FETCH_POINTS_FAILURE,
           payload: error
         });
+        callback();
       });
   };
 };
 
-export const fetchPoint = (id) => (dispatch) => {
+export const fetchPoint = (id, callback) => (dispatch) => {
   axios
     .get(`${API_URL}/report?idReport=${id}`)
     .then((response) => {
@@ -44,11 +46,13 @@ export const fetchPoint = (id) => (dispatch) => {
         type: FETCH_POINT_SUCCESS,
         payload: response.data
       });
+      callback();
     })
     .catch((error) => {
       dispatch({
         type: FETCH_POINT_FAILURE,
         payload: error
       });
+      callback();
     });
 };

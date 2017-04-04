@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Icon = ({ name }) => (
-  <i className={`fa fa-${name}`} />
+const Icon = ({ name, className }) => (
+  <i className={`fa fa-${name} ${className}`} />
 );
 
 export default Icon;
