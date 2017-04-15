@@ -61,9 +61,10 @@
   width: 30%;
 }
 
-.marker {
+.marker-icon {
   color: red;
   font-size: 4em;
+  cursor: pointer;
 }
 
 /* Loading */
@@ -83,4 +84,66 @@
 .loading-icon {
   font-size: 6em;
   color: #f0ad4e;
+}
+
+
+/* Preview Tip */
+.preview-tip {
+  width: 300px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  top: -155px;
+  left: -75px;
+  padding: 10px;
+  box-shadow: 4px 3px 5px #888888;
+  -moz-box-shadow: 4px 3px 5px #888888;
+  -webkit-box-shadow: 4px 3px 5px #888888;
+  z-index: 999999;
+}
+
+.preview-tip:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 76px;
+  display: block;
+  width: 0;
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: #FFF transparent;
+  z-index: 999999;
+}
+
+.preview-tip-icon {
+  padding-right: 10px;
+}
+
+.preview-tip-text {
+  width: 202px;
+  font-size: 1em;
+  color: black;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  min-width: 200px;
+}
+
+.preview-tip-text ul {
+  padding-left: 0;
+  list-style: none;
+  margin: 0 auto;
+}
+
+.preview-tip-text ul li {
+  padding: 2px 0;
+}
+
+.preview-tip-text .title {
+  font-size: 1.5em;
+  margin-bottom: 5px;
 }

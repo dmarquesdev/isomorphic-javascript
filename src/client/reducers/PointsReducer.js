@@ -5,12 +5,12 @@ import {
   FETCH_POINT_FAILURE
 } from '../actions/types';
 
-const INITIAL_STATE = { list: [], selected: null, error: null };
+const INITIAL_STATE = { list: [], selected: {}, error: null };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_POINTS_SUCCESS:
-      return { ...state, list: action.payload, selected: null };
+      return { ...state, list: action.payload, selected: {} };
     case FETCH_POINTS_FAILURE:
       return { ...INITIAL_STATE, error: action.payload };
     case FETCH_POINT_SUCCESS:
