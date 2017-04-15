@@ -1,12 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 
-import { SearchBar, FlatIcon } from '../components';
-import { fetchPoints } from '../actions';
+import FlatIcon from './FlatIcon';
+import { SearchBar } from '../containers';
 
 class Home extends Component {
-  onSearch(term) {
-    this.props.fetchPoints({ name: term });
+  onSearch() {
     this.context.router.push('/mapa');
   }
 
@@ -55,4 +53,4 @@ Home.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default connect(null, { fetchPoints })(Home);
+export default Home;

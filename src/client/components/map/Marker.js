@@ -14,7 +14,7 @@ class Marker extends Component {
   }
 
   render() {
-    const { onClick, children } = this.props;
+    const { onClick, children, id } = this.props;
     return (
       <div
         className="marker"

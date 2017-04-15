@@ -3,46 +3,52 @@ import { connect } from 'react-redux';
 
 import {
   GoogleMap,
-  SearchBar,
   Marker,
   CrimePreview
 } from '../components';
-import { fetchPoints, fetchPoint } from '../actions';
+import SearchBar from './SearchBar';
+import { fetchPoint } from '../actions';
 
 class Map extends Component {
-  onSearch(term) {
-    this.props.fetchPoints({ name: term });
-  }
-
   onMarkerClick(id) {
     this.props.fetchPoint(id);
   }
 
   markerList(points) {
-    return points.map((point) => (
-      <Marker
-        id={point.idBO}
-        key={point.idBO}
-        lat={parseFloat(point.lat)}
-        lng={parseFloat(point.lon)}
-        onClick={this.onMarkerClick.bind(this)}
-      >
-        <CrimePreview
-          date={point.dataOcorrencia}
-          address={point.local}
-          category={point.categoria}
-          person={point.nome}
-        />
-      </Marker>
-    ));
+    return points.map((point) => {
+      const lat = parseFloat(point.lat);
+      const lon = parseFloat(point.lon);
+
+      if (!isNaN(lat) && !isNaN(lon)) {
+        return (
+          <Marker
+            id={point.idBO}
+            key={point.idBO}
+            lat={lat}
+            lng={lon}
+            onClick={this.onMarkerClick.bind(this)}
+          >
+            <CrimePreview
+              date={point.dataOcorrencia}
+              address={point.local}
+              category={point.categoria}
+              person={point.nome}
+            />
+          </Marker>
+        )
+      }
+    });
   }
 
   render() {
+    if(this.props.error) {
+      console.log(this.props.error);
+    }
     return (
       <div className="map-container">
         <GoogleMap markers={this.markerList(this.props.points)} />
         <div className="map-search-bar">
-          <SearchBar onSearch={this.onSearch.bind(this)} />
+          <SearchBar />
         </div>
       </div>
     );
@@ -51,7 +57,11 @@ class Map extends Component {
 
 const mapStateToProps = (state) => {
   const { points } = state;
-  return { points: points.list, selected: points.selected };
+  return {
+    points: points.list,
+    selected: points.selected,
+    error: points.error
+  };
 };
 
-export default connect(mapStateToProps, { fetchPoints, fetchPoint })(Map);
+export default connect(mapStateToProps, { fetchPoint })(Map);
