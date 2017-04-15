@@ -1,9 +1,15 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-import SearchBar from './SearchBar';
-import FlatIcon from './FlatIcon';
+import { SearchBar, FlatIcon } from '../components';
+import { fetchPoints } from '../actions';
 
 class Home extends Component {
+  onSearch(term) {
+    this.props.fetchPoints({ name: term });
+    this.context.router.push('/mapa');
+  }
+
   render() {
     return (
       <div className="home-container">
@@ -15,7 +21,7 @@ class Home extends Component {
               <h1>Criminal Records</h1>
             </div>
             <SearchBar
-              onSearch={() => { this.context.router.push('/mapa'); }}
+              onSearch={this.onSearch.bind(this)}
             />
           </div>
         </div>
@@ -49,4 +55,4 @@ Home.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default Home;
+export default connect(null, { fetchPoints })(Home);

@@ -8,17 +8,22 @@ import {
   FETCH_POINTS_SUCCESS,
   FETCH_POINTS_FAILURE,
   FETCH_POINT_SUCCESS,
-  FETCH_POINT_FAILURE
+  FETCH_POINT_FAILURE,
+  START_API_CALL,
+  END_API_CALL
 } from './types';
 
 const API_URL = process.env.NODE_ENV === 'production' ?
   config.PROD_API_URL :
   config.DEV_API_URL;
 
-export const fetchPoints = (properties, callback) => {
+export const fetchPoints = (properties) => {
   const params = objectToURLParameters(properties);
 
   return (dispatch) => {
+    dispatch({
+      type: START_API_CALL
+    });
     axios
       .get(`${API_URL}/points?${params}`)
       .then((response) => {
@@ -26,19 +31,26 @@ export const fetchPoints = (properties, callback) => {
           type: FETCH_POINTS_SUCCESS,
           payload: response.data
         });
-        callback();
+        dispatch({
+          type: END_API_CALL
+        });
       })
       .catch((error) => {
         dispatch({
           type: FETCH_POINTS_FAILURE,
           payload: error
         });
-        callback();
+        dispatch({
+          type: END_API_CALL
+        });
       });
   };
 };
 
-export const fetchPoint = (id, callback) => (dispatch) => {
+export const fetchPoint = (id) => (dispatch) => {
+  dispatch({
+    type: START_API_CALL,
+  });
   axios
     .get(`${API_URL}/report?idReport=${id}`)
     .then((response) => {
@@ -46,13 +58,17 @@ export const fetchPoint = (id, callback) => (dispatch) => {
         type: FETCH_POINT_SUCCESS,
         payload: response.data
       });
-      callback();
+      dispatch({
+        type: END_API_CALL
+      });
     })
     .catch((error) => {
       dispatch({
         type: FETCH_POINT_FAILURE,
         payload: error
       });
-      callback();
+      dispatch({
+        type: END_API_CALL
+      });
     });
 };

@@ -5,29 +5,17 @@ import {
   GoogleMap,
   SearchBar,
   Marker,
-  Loading,
   CrimePreview
 } from '../components';
 import { fetchPoints, fetchPoint } from '../actions';
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loading: false };
-  }
-
   onSearch(term) {
-    this.setState({ loading: true });
-    this.props.fetchPoints({ name: term }, () => {
-      this.setState({ loading: false })
-    });
+    this.props.fetchPoints({ name: term });
   }
 
   onMarkerClick(id) {
-    this.setState({ loading: true });
-    this.props.fetchPoint(id, () => {
-      this.setState({ loading: false });
-    });
+    this.props.fetchPoint(id);
   }
 
   markerList(points) {
@@ -39,7 +27,7 @@ class Map extends Component {
         lng={parseFloat(point.lon)}
         onClick={this.onMarkerClick.bind(this)}
       >
-        <CrimePreview 
+        <CrimePreview
           date={point.dataOcorrencia}
           address={point.local}
           category={point.categoria}
@@ -52,7 +40,6 @@ class Map extends Component {
   render() {
     return (
       <div className="map-container">
-        {this.state.loading && <Loading />}
         <GoogleMap markers={this.markerList(this.props.points)} />
         <div className="map-search-bar">
           <SearchBar onSearch={this.onSearch.bind(this)} />
