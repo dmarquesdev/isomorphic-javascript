@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
   GoogleMap,
   Marker,
-  CrimePreview
+  CrimePreview,
+  Icon
 } from '../components';
 import SearchBar from './SearchBar';
 import { fetchPoint } from '../actions';
@@ -47,8 +48,9 @@ class Map extends Component {
     return (
       <div className="map-container">
         <GoogleMap markers={this.markerList(this.props.points)} />
-        <div className="map-search-bar">
-          <SearchBar />
+        <div className="map-search">
+          <a className="menu-btn" href="#"><Icon name="bars" /></a>
+          <SearchBar className="map-search-bar" />
         </div>
       </div>
     );

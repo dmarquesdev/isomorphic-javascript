@@ -51,7 +51,7 @@ class SearchBar extends Component {
   renderSearchTypes() {
     return (
       <select
-        className="form-control"
+        className="form-control search-bar-type"
         value={this.props.type}
         onChange={this.onTypeChange.bind(this)}
       >
@@ -73,7 +73,7 @@ class SearchBar extends Component {
         return (
           <select
             value={this.props.term}
-            className="form-control"
+            className="form-control search-bar-value"
             onChange={this.onSearchChange.bind(this)}
           >
             {
@@ -91,7 +91,7 @@ class SearchBar extends Component {
         return (
           <input
             type="text"
-            className="form-control"
+            className="form-control search-bar-value"
             placeholder="Insira uma pesquisa..."
             value={this.props.term}
             onChange={this.onSearchChange.bind(this)}
@@ -101,9 +101,15 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { onSearch } = this.props;
+    const { onSearch, className } = this.props;
+
+    let cls = 'search-bar';
+    if(className) {
+      cls += ' ' + className;
+    }
+
     return (
-      <form className="search-bar"
+      <form className={cls}
         onSubmit={(event) => this.onSubmit(event, onSearch)}
       >
         <div className="form-group">
