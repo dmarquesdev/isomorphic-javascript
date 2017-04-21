@@ -50,7 +50,7 @@ class Map extends Component {
           ref="leftSidebar"
           title="Pesquisa"
         >
-          <SearchForm />
+          <SearchForm onSearch={() => this.refs.leftSidebar.toggle()} />
         </SideBar>
         <div className="map">
           <GoogleMap markers={this.markerList(this.props.points)} />
