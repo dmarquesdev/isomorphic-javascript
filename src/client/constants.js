@@ -36,12 +36,10 @@ export const Educations = [
 
 // Field types
 export const FIELD_TEXT = 'text';
-export const FIELD_DATE = 'date';
 export const FIELD_SELECT = 'select';
 export const FIELD_NUMERIC = 'numeric';
 
 // Search
-export const SEARCH_TYPE_NAME = 'name';
 export const SearchTypes = {
   name: {
     label: 'Nome',
@@ -55,10 +53,9 @@ export const SearchTypes = {
 
   year: {
     label: 'Ano',
-    type: FIELD_DATE,
-    pattern: 'dd/MM/yyyy',
-    minValue: '01/01/2013',
-    maxValue: '31/12/2015'
+    type: FIELD_NUMERIC, 
+    minValue: 2013,
+    maxValue: 2015
   },
 
   personId: {

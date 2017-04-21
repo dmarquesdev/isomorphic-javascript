@@ -8,7 +8,8 @@ import SearchBarReducer from './SearchBarReducer';
 const rootReducer = combineReducers({
   points: PointsReducer,
   loading: LoadingReducer,
-  searchBar: SearchBarReducer 
+  searchBar: SearchBarReducer,
+  form: FormReducer
 });
 
 export default rootReducer;

@@ -8,6 +8,7 @@ import {
   Icon
 } from '../components';
 import SearchBar from './SearchBar';
+import SearchForm from './SearchForm';
 import { fetchPoint } from '../actions';
 
 class Map extends Component {
@@ -47,9 +48,15 @@ class Map extends Component {
     }
     return (
       <div className="map-container">
+        <SearchForm ref="searchForm" />
         <GoogleMap markers={this.markerList(this.props.points)} />
         <div className="map-search">
-          <a className="menu-btn" href="#"><Icon name="bars" /></a>
+          <a 
+            className="menu-btn" 
+            onClick={() => this.refs.searchForm.toggle()}
+          >
+            <Icon name="bars" />
+          </a>
           <SearchBar className="map-search-bar" />
         </div>
       </div>
