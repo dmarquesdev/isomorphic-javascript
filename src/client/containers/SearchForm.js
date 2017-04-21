@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import _ from 'lodash';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 
-import { SideBar, Icon } from '../components';
+import { Icon } from '../components';
 
 import {
   SearchTypes,
@@ -18,11 +19,7 @@ class SearchForm extends Component {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.refs.sidebar.toggle();
+    this.renderFields = this.renderFields.bind(this);
   }
 
   onSubmit(search, callback) {
@@ -33,61 +30,91 @@ class SearchForm extends Component {
     }
   }
 
-  renderFields(fieldConfig, field) {
-    const helper = this.props.fields[field];
 
-    let FieldComponent = null;
+  renderFields(fieldConfig, field) {
     if (fieldConfig.type === FIELD_SELECT) {
-      FieldComponent = (
-        <select
-          className="form-control"
-          {...helper}
+      return (
+        <Field
+          key={field}
+          component={renderSelect}
+          name={field}
+          label={fieldConfig.label}
         >
-          <option value={null}>-Selecione-</option>
+          <option>-Selecione-</option>
           {
-            _.map(fieldConfig.options, (v,k) => {
-              return <option key={k} value={k}>{v.label}</option>
+            _.map(fieldConfig.values, (v, k) => {
+              let keyVal = k;
+              if(!isNaN(k)) {
+                keyVal = v;
+              }
+              return <option key={k} value={keyVal}>{v}</option>
             })
           }
-        </select>
+        </Field>
       );
     } else {
-      FieldComponent = (
-        <input
+      return (
+        <Field
+          key={field}
+          component={renderInput}
           type="text"
-          className="form-control"
-          {...helper}
+          name={field}
+          label={fieldConfig.label}
         />
       );
     }
-
-    return (
-      <div className={`form-group ${helper.touched &&
-          helper.invalid ? 'has-danger' : ''}`}>
-          <label>{field.label}</label>
-          <FieldComponent />
-          <div className="text-help">
-            {helper.touched ? helper.error : null}
-          </div>
-        </div>
-    );
   }
 
   render() {
-    const { handleSubmit, onSearch } = this.props;
+    const { handleSubmit, submitting, onSearch } = this.props;
     return (
-      <SideBar ref="sidebar">
-        <form onSubmit={handleSubmit((props) => this.onSubmit(props, onSearch))}>
-          {_.map(SearchTypes, this.renderFields.bind(this))}
-          <button type="submit" className="btn btn-primary">
+      <form
+        onSubmit={handleSubmit((props) =>
+          this.onSubmit(props, onSearch))}
+          className="container-fluid"
+        >
+          {_.map(SearchTypes, this.renderFields)}
+          <button type="submit" className="btn btn-primary" disabled={submitting}>
             <Icon name="search"></Icon>
             <span> Pesquisar</span>
           </button>
         </form>
-      </SideBar>
     )
   }
 }
+
+const renderInput = (field) => (
+  <div
+    className={`form-group ${field.meta.touched &&
+      field.meta.invalid ? 'has-danger' : ''}`}
+    >
+      <label className="form-control-label">{field.label}</label>
+      <input
+        className="form-control"
+        {...field.input}
+      />
+      <div className="form-control-feedback">
+        {field.meta.touched ? field.meta.error : null}
+      </div>
+    </div>
+);
+
+const renderSelect = (field) => (
+  <div
+    className={`form-group ${field.meta.touched &&
+      field.meta.invalid ? 'has-danger' : ''}`}
+    >
+      <label className="form-control-label">{field.label}</label>
+      <select
+        className="form-control"
+        children={field.children}
+        {...field.input}
+      />
+      <div className="form-control-feedback">
+        {field.meta.touched ? field.meta.error : null}
+      </div>
+    </div>
+);
 
 const validate = (values) => {
   const errors = {};
@@ -96,21 +123,23 @@ const validate = (values) => {
     const value = values[field];
 
     if(config.type === FIELD_NUMERIC &&
-      value != undefined &&
-      (
-        value < config.minValue ||
-        value > config.maxValue
-      )) {
-      errors[field] = `O valor de '${config.label}'
-          deve ser entre ${config.minValue} e ${config.maxValue}`;
+      value != undefined) {
+      if (isNaN(Number(value))) {
+        errors[field] = `${config.label} deve ser um número!`;
+      } else if(Number(value) < config.minValue ||
+          Number(value) > config.maxValue
+      ) {
+        errors[field] = `O valor de '${config.label}'
+            deve ser entre ${config.minValue} e ${config.maxValue}`;
+      }
     }
   });
 
   return errors;
 };
 
-export default reduxForm({
+export default connect(null, { fetchPoints })(reduxForm({
   form: 'SearchForm',
   fields: _.keys(SearchTypes),
   validate
-}, null, { fetchPoints })(SearchForm);
+})(SearchForm));

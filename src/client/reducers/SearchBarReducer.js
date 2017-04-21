@@ -3,11 +3,7 @@ import {
   CHANGE_SEARCH_BAR_TYPE
 } from '../actions/types';
 
-import {
-  SEARCH_TYPE_NAME
-} from '../constants';
-
-const INITIAL_STATE = { type: SEARCH_TYPE_NAME, term: '' };
+const INITIAL_STATE = { type: 'name', term: '' };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {

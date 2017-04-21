@@ -52,6 +52,12 @@
 .map-container {
   width: 100%;
   height: 93vh;
+  display: flex;
+  align-items: stretch;
+}
+
+.map {
+  flex-grow: 8;
 }
 
 .marker-icon {
@@ -96,14 +102,15 @@
 
 .menu-btn {
   flex-grow: 1;
-  color: #fff;
+  color: #fff !important;
   text-align: center;
   font-size: 1.5em;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
 }
 
-.menu-btn:hover {
-  color: #fff;
+.menu-btn:hover, .menu-btn:active, .menu-btn:visited {
+  color: #fff !important;
 }
 
 /* Loading */
@@ -187,4 +194,21 @@
   margin-bottom: 5px;
 }
 
+/* SideBar */
+.sidebar {
+  flex-grow: 1;
+}
 
+.sidebar-header {
+  padding: 10px;
+}
+
+.sidebar-title {
+  display: inline;
+}
+
+.sidebar-close {
+  float: right;
+  color: #ccc !important;
+  cursor: pointer;
+}

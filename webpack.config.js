@@ -20,7 +20,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        loaders: ['react-hot-loader'],
+        loaders: ['react-hot-loader/webpack'],
         exclude: /node_modules/
       },
       {

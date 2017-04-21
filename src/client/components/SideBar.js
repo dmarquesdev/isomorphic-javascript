@@ -19,8 +19,11 @@ class SideBar extends Component {
     return this.state.visible && (
       <div className="sidebar">
         <div className="sidebar-header">
-          <h4>{title}</h4>
-          <a onClick={this.toggle.bind(this)}>
+          <h3 className="sidebar-title">{title}</h3>
+          <a
+            onClick={this.toggle.bind(this)}
+            className="sidebar-close"
+          >
             <Icon name="close" />
           </a>
         </div>

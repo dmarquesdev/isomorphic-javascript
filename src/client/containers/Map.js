@@ -5,7 +5,8 @@ import {
   GoogleMap,
   Marker,
   CrimePreview,
-  Icon
+  Icon,
+  SideBar
 } from '../components';
 import SearchBar from './SearchBar';
 import SearchForm from './SearchForm';
@@ -43,21 +44,25 @@ class Map extends Component {
   }
 
   render() {
-    if(this.props.error) {
-      console.log(this.props.error);
-    }
     return (
       <div className="map-container">
-        <SearchForm ref="searchForm" />
-        <GoogleMap markers={this.markerList(this.props.points)} />
-        <div className="map-search">
-          <a 
-            className="menu-btn" 
-            onClick={() => this.refs.searchForm.toggle()}
-          >
-            <Icon name="bars" />
-          </a>
-          <SearchBar className="map-search-bar" />
+        <SideBar
+          ref="leftSidebar"
+          title="Pesquisa"
+        >
+          <SearchForm />
+        </SideBar>
+        <div className="map">
+          <GoogleMap markers={this.markerList(this.props.points)} />
+          <div className="map-search">
+            <a
+              className="menu-btn"
+              onClick={() => this.refs.leftSidebar.toggle()}
+            >
+              <Icon name="bars" />
+            </a>
+            <SearchBar className="map-search-bar" />
+          </div>
         </div>
       </div>
     );
