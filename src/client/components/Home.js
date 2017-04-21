@@ -1,9 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 
-import SearchBar from './SearchBar';
 import FlatIcon from './FlatIcon';
+import { SearchBar } from '../containers';
 
 class Home extends Component {
+  onSearch() {
+    this.context.router.push('/mapa');
+  }
+
   render() {
     return (
       <div className="home-container">
@@ -15,7 +19,7 @@ class Home extends Component {
               <h1>Criminal Records</h1>
             </div>
             <SearchBar
-              onSearch={() => { this.context.router.push('/mapa'); }}
+              onSearch={this.onSearch.bind(this)}
             />
           </div>
         </div>

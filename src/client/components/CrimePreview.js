@@ -16,7 +16,7 @@ const CrimePreview = ({
 
     <div className="preview-tip-text">
       <ul>
-        <li className="title">{Categories[category]}</li>
+        <li className="title">{Categories[category.toLowerCase()]}</li>
         <li><i className="fa fa-map"></i> {address}</li>
         <li><i className="fa fa-calendar"></i> {date}</li>
         <li><i className="fa fa-user"></i> {person}</li>

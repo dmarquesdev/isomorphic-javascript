@@ -3,59 +3,66 @@ import { connect } from 'react-redux';
 
 import {
   GoogleMap,
-  SearchBar,
   Marker,
-  Loading,
-  CrimePreview
+  CrimePreview,
+  Icon,
+  SideBar
 } from '../components';
-import { fetchPoints, fetchPoint } from '../actions';
+import SearchBar from './SearchBar';
+import SearchForm from './SearchForm';
+import { fetchPoint } from '../actions';
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loading: false };
-  }
-
-  onSearch(term) {
-    this.setState({ loading: true });
-    this.props.fetchPoints({ name: term }, () => {
-      this.setState({ loading: false })
-    });
-  }
-
   onMarkerClick(id) {
-    this.setState({ loading: true });
-    this.props.fetchPoint(id, () => {
-      this.setState({ loading: false });
-    });
+    this.props.fetchPoint(id);
   }
 
   markerList(points) {
-    return points.map((point) => (
-      <Marker
-        id={point.idBO}
-        key={point.idBO}
-        lat={parseFloat(point.lat)}
-        lng={parseFloat(point.lon)}
-        onClick={this.onMarkerClick.bind(this)}
-      >
-        <CrimePreview 
-          date={point.dataOcorrencia}
-          address={point.local}
-          category={point.categoria}
-          person={point.nome}
-        />
-      </Marker>
-    ));
+    return points.map((point) => {
+      const lat = parseFloat(point.lat);
+      const lon = parseFloat(point.lon);
+
+      if (!isNaN(lat) && !isNaN(lon)) {
+        return (
+          <Marker
+            id={point.idBO}
+            key={point.idBO}
+            lat={lat}
+            lng={lon}
+            onClick={this.onMarkerClick.bind(this)}
+          >
+            <CrimePreview
+              date={point.dataOcorrencia}
+              address={point.local}
+              category={point.categoria}
+              person={point.nome}
+            />
+          </Marker>
+        )
+      }
+    });
   }
 
   render() {
     return (
       <div className="map-container">
-        {this.state.loading && <Loading />}
-        <GoogleMap markers={this.markerList(this.props.points)} />
-        <div className="map-search-bar">
-          <SearchBar onSearch={this.onSearch.bind(this)} />
+        <SideBar
+          ref="leftSidebar"
+          title="Pesquisa"
+        >
+          <SearchForm />
+        </SideBar>
+        <div className="map">
+          <GoogleMap markers={this.markerList(this.props.points)} />
+          <div className="map-search">
+            <a
+              className="menu-btn"
+              onClick={() => this.refs.leftSidebar.toggle()}
+            >
+              <Icon name="bars" />
+            </a>
+            <SearchBar className="map-search-bar" />
+          </div>
         </div>
       </div>
     );
@@ -64,7 +71,11 @@ class Map extends Component {
 
 const mapStateToProps = (state) => {
   const { points } = state;
-  return { points: points.list, selected: points.selected };
+  return {
+    points: points.list,
+    selected: points.selected,
+    error: points.error
+  };
 };
 
-export default connect(mapStateToProps, { fetchPoints, fetchPoint })(Map);
+export default connect(mapStateToProps, { fetchPoint })(Map);
