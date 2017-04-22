@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import FlatIcon from './FlatIcon';
+import { FlatIcon } from './common';
 import { Categories } from '../constants';
 
 const CrimePreview = ({

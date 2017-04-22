@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import FlatIcon from './FlatIcon';
+import { FlatIcon } from './common';
 import { SearchBar } from '../containers';
 
 class Home extends Component {

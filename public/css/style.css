@@ -212,3 +212,66 @@
   color: #ccc !important;
   cursor: pointer;
 }
+
+/* Dialog */
+.dialog {
+  background-color: #fff;
+  padding: 10px 25px;
+  max-height: 95vh;
+}
+
+.dialog-header {
+  padding: 10px 0px;
+}
+
+.dialog-title {
+  display: inline;
+}
+
+.dialog-close {
+  float: right;
+  color: #ccc !important;
+  cursor: pointer;
+}
+
+/* Card */
+.mycard {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  margin: 2% auto;
+  box-shadow: 3px 2px 1px 0px #ccc;
+}
+
+.mycard .header {
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+/* Crime Detail */
+.crime-detail {
+  min-width: 50vw;
+}
+
+.crime-detail-resume {
+  flex-direction: row;
+}
+
+.crime-detail-resume .resume {
+  padding-left: 25px;
+}
+
+.crime-detail-map {
+  height: 30vh;
+}
+
+.crime-detail-tabs .nav {
+  margin-bottom: 10px;
+}
+
+.crime-detail-tabs .tab-content .row {
+  padding: 5px 0px;
+}

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import Icon from '../Icon';
+import { Icon } from '../common';
 
 class Marker extends Component {
   constructor(props) {

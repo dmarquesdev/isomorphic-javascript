@@ -6,7 +6,8 @@ import {
   Marker,
   CrimePreview,
   Icon,
-  SideBar
+  SideBar,
+  CrimeDetail
 } from '../components';
 import SearchBar from './SearchBar';
 import SearchForm from './SearchForm';
@@ -14,7 +15,9 @@ import { fetchPoint } from '../actions';
 
 class Map extends Component {
   onMarkerClick(id) {
-    this.props.fetchPoint(id);
+    this.props.fetchPoint(id, () => {
+        this.refs.detail.toggle();
+    });
   }
 
   markerList(points) {
@@ -64,6 +67,7 @@ class Map extends Component {
             <SearchBar className="map-search-bar" />
           </div>
         </div>
+        <CrimeDetail ref="detail" crime={this.props.selected} />
       </div>
     );
   }

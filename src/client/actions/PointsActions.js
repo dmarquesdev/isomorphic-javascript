@@ -46,7 +46,7 @@ export const fetchPoints = (properties) => {
   };
 };
 
-export const fetchPoint = (id) => (dispatch) => {
+export const fetchPoint = (id, callback) => (dispatch) => {
   dispatch({
     type: START_API_CALL,
   });
@@ -55,11 +55,14 @@ export const fetchPoint = (id) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: FETCH_POINT_SUCCESS,
-        payload: response.data
+        payload: response.data[0]
       });
       dispatch({
         type: END_API_CALL
       });
+      if(callback) {
+        callback();
+      }
     })
     .catch((error) => {
       dispatch({
