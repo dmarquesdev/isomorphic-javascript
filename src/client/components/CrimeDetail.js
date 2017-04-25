@@ -48,8 +48,8 @@ class CrimeDetail extends Component {
           <Card className="crime-detail-resume">
             <FlatIcon name="burglar" width={100} height={100} />
             <div className="resume">
-              <h4>{`#${crime.idBO}`}</h4>
-              <h4>{crime.partesEnvolvidas[0].nome}</h4>
+              <h5>{`#${crime.idBO}`}</h5>
+              <h5>{crime.partesEnvolvidas[0].nome}</h5>
               <h5>{Categories[crime.categoria.toLowerCase()]}</h5>
             </div>
           </Card>
@@ -59,8 +59,8 @@ class CrimeDetail extends Component {
               <h5><Icon name="map-marker" /> Local</h5>
             </div>
             <div className="info">
-              <h5>{crime.local}</h5>
-              <h5>{crime.tipoLocal}</h5>
+              <h6>{crime.local}</h6>
+              <h6>{crime.tipoLocal}</h6>
             </div>
             <GoogleMap markers={marker} zoom={8} />
           </Card>

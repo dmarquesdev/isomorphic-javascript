@@ -64,7 +64,7 @@ class Map extends Component {
             >
               <Icon name="bars" />
             </a>
-            <SearchBar className="map-search-bar" />
+            <SearchBar className="map-search-bar hidden-sm-down" />
           </div>
         </div>
         <CrimeDetail ref="detail" crime={this.props.selected} />
