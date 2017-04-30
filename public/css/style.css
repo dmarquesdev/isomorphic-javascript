@@ -293,3 +293,14 @@
 .crime-detail-tabs .tab-content .row {
   padding: 5px 0px;
 }
+
+.crime-detail-tabs .tab-content .tab-header a{
+  display: block;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+.crime-detail-tabs .tab-content .tab-header a:hover{
+  text-decoration: none;
+}

@@ -26,8 +26,13 @@ class Dialog extends Component {
       children
     } = this.props;
 
-    return this.state.visible && (
-      <div className="overlay">
+    const style = (!this.state.visible) ? { display: 'none' } : null;
+
+    return (
+      <div
+        className="overlay"
+        style={style}
+      >
         <div className="dialog">
           <div className="dialog-header">
             <h5 className="dialog-title">{title}</h5>

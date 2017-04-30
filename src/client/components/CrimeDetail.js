@@ -15,6 +15,10 @@ import {
 import { Categories } from '../constants';
 
 class CrimeDetail extends Component {
+  componentDidUpdate() {
+    responsiveTabs();
+  }
+
   toggle() {
     this.refs.dialog.toggle();
   }
@@ -66,7 +70,7 @@ class CrimeDetail extends Component {
           </Card>
 
           <Card className="crime-detail-tabs">
-            <ul className="nav nav-tabs" role="tablist">
+            <ul className="nav nav-tabs hidden-sm-down" role="tablist">
               <li className="nav-item">
                 <a
                   className="nav-link active"
@@ -99,7 +103,7 @@ class CrimeDetail extends Component {
               </li>
             </ul>
 
-            <div className="tab-content">
+            <div id="crime-detail-infos" className="tab-content big">
               <div
                 className="tab-pane active"
                 id="infos"
