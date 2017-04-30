@@ -56,6 +56,8 @@
   height: 93vh;
   display: flex;
   align-items: stretch;
+  position: relative;
+  overflow: hidden;
 }
 
 .map {
@@ -75,6 +77,70 @@
   -webkit-background-clip: text;
   background-clip: text;
   transition: all .2s ease-in-out;
+}
+
+.marker-icon.__red {
+  background-image: #a90329;
+  background-image: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background-image: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background-image: linear-gradient(to bottom, #ff3019 0%, #cf0404 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 );
+}
+
+.marker-icon.__yellow {
+  background-image: #d7e516;
+  background-image: -moz-linear-gradient(top, #d7e516 0%, #e2cc04 100%);
+  background-image: -webkit-linear-gradient(top, #d7e516 0%, #e2cc04 100%);
+  background-image: linear-gradient(to bottom, #d7e516 0%, #e2cc04 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7e516', endColorstr='#e2cc04',GradientType=0 );
+}
+
+.marker-icon.__green {
+  background-image: #18f218;
+  background-image: -moz-linear-gradient(top, #18f218 0%, #1f7702 100%);
+  background-image: -webkit-linear-gradient(top, #18f218 0%, #1f7702 100%);
+  background-image: linear-gradient(to bottom, #18f218 0%, #1f7702 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#18f218', endColorstr='#1f7702',GradientType=0 );
+}
+
+.marker-icon.__blue {
+  background-image: #19c9ff;
+  background-image: -moz-linear-gradient(top, #19c9ff 0%, #048eea 100%);
+  background-image: -webkit-linear-gradient(top, #19c9ff 0%, #048eea 100%);
+  background-image: linear-gradient(to bottom, #19c9ff 0%, #048eea 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19c9ff', endColorstr='#048eea',GradientType=0 );
+}
+
+.marker-icon.__orange {
+  background-image: #ffae19;
+  background-image: -moz-linear-gradient(top, #ffae19 0%, #ea7f04 100%);
+  background-image: -webkit-linear-gradient(top, #ffae19 0%, #ea7f04 100%);
+  background-image: linear-gradient(to bottom, #ffae19 0%, #ea7f04 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffae19', endColorstr='#ea7f04',GradientType=0 );
+}
+
+.marker-icon.__pink {
+  background-image: #ff4fa7;
+  background-image: -moz-linear-gradient(top, #ff4fa7 0%, #e0048f 100%);
+  background-image: -webkit-linear-gradient(top, #ff4fa7 0%, #e0048f 100%);
+  background-image: linear-gradient(to bottom, #ff4fa7 0%, #e0048f 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4fa7', endColorstr='#e0048f',GradientType=0 );
+}
+
+.marker-icon.__purple {
+  background-image: #c24efc;
+  background-image: -moz-linear-gradient(top, #c24efc 0%, #9004d6 100%);
+  background-image: -webkit-linear-gradient(top, #c24efc 0%, #9004d6 100%);
+  background-image: linear-gradient(to bottom, #c24efc 0%, #9004d6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c24efc', endColorstr='#9004d6',GradientType=0 );
+}
+
+.marker-icon.__brown {
+  background-image: #914600;
+  background-image: -moz-linear-gradient(top, #914600 0%, #633201 100%);
+  background-image: -webkit-linear-gradient(top, #914600 0%, #633201 100%);
+  background-image: linear-gradient(to bottom, #914600 0%, #633201 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#914600', endColorstr='#633201',GradientType=0 );
 }
 
 .marker-icon:hover {
@@ -303,4 +369,38 @@
 
 .crime-detail-tabs .tab-content .tab-header a:hover{
   text-decoration: none;
+}
+
+/* Map Caption */
+.map-caption {
+  position: absolute;
+  bottom: 9vh;
+  display: flex;
+  flex-direction: row;
+  transition: all 0.5s ease;
+}
+
+.map-caption.__hidden {
+  right: -319px;
+}
+
+.map-caption.__visible {
+  right: 5px;
+}
+
+.map-caption ._list {
+  list-style: none;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 4px 4px 6px 0px #bbafaf;
+}
+
+.map-caption ._list .marker-icon {
+  font-size: 2em;
+  padding-right: 10px;
+}
+
+.map-caption ._button {
+  height: 40px;
+  cursor: pointer;
 }

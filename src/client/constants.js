@@ -10,6 +10,17 @@ export const Categories = {
   morte_subita_natural: "Morte Súbita Natural"
 };
 
+export const CategoryColor = {
+  LESAO_CORPORAL_SEGUIDA_DE_MORTE: '__pink',
+  LATROCINIO: '__orange',
+  MORTE_ACIDENTAL: '__blue',
+  CADAVER_SEM_LESOES: '__green',
+  SUICIDIO_DUVIDOSO: '__brown',
+  HOMICIDIO_DOLOSO: '__red',
+  OPOSICAO_POLICIAL: '__purple',
+  MORTE_SUBITA_NATURAL: '__yellow'
+};
+
 export const Genders = {
   masculino: 'Masculino',
   feminino: 'Feminino'
@@ -53,7 +64,7 @@ export const SearchTypes = {
 
   year: {
     label: 'Ano',
-    type: FIELD_NUMERIC, 
+    type: FIELD_NUMERIC,
     minValue: 2013,
     maxValue: 2015
   },
