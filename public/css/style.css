@@ -280,6 +280,7 @@
 .sidebar {
   flex-grow: 1;
   overflow-y: auto;
+  z-index: 999999;
 }
 
 .sidebar-header {
@@ -352,6 +353,12 @@
   height: 30vh;
 }
 
+@media(max-width: 768px) {
+  .crime-detail-map {
+    height: 45vh;
+  }
+}
+
 .crime-detail-tabs .nav {
   margin-bottom: 10px;
 }
@@ -377,6 +384,9 @@
   bottom: 9vh;
   display: flex;
   flex-direction: row;
+}
+
+.__hidden, .__visible {
   transition: all 0.5s ease;
 }
 

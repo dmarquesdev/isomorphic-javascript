@@ -35,12 +35,13 @@ class MapCaption extends Component {
   render() {
     const visible = (this.state.visible) ? '__visible' : '__hidden';
     return (
-      <div className={`map-caption ${visible}`}>
+      <div className={`map-caption ${visible} hidden-sm-down`}>
         <button
           onClick={this.toggle.bind(this)}
           className="btn btn-primary _button"
         >
-          <Icon name="map-marker" /> Legenda
+          <Icon name="map-marker" />
+          <span> Legenda</span>
         </button>
         <ul className="_list">
           {this.renderMarkers()}
