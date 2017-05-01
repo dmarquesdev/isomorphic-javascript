@@ -14,7 +14,7 @@ class Marker extends Component {
   }
 
   render() {
-    const { onClick, children, id } = this.props;
+    const { onClick, children, id, color } = this.props;
     return (
       <div
         className="marker"
@@ -22,7 +22,7 @@ class Marker extends Component {
         onMouseEnter={this.hoverToggle}
         onMouseLeave={this.hoverToggle}
       >
-        <Icon className="marker-icon" name="map-marker" />
+        <Icon className={`marker-icon ${color}`} name="map-marker" />
         {this.state.hover && children}
       </div>
     );

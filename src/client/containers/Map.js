@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {
   GoogleMap,
   Marker,
+  MapCaption,
   CrimePreview,
   Icon,
   SideBar,
@@ -12,6 +13,7 @@ import {
 import SearchBar from './SearchBar';
 import SearchForm from './SearchForm';
 import { fetchPoint } from '../actions';
+import { CategoryColor } from '../constants';
 
 class Map extends Component {
   onMarkerClick(id) {
@@ -32,6 +34,7 @@ class Map extends Component {
             key={point.idBO}
             lat={lat}
             lng={lon}
+            color={CategoryColor[point.categoria]}
             onClick={this.onMarkerClick.bind(this)}
           >
             <CrimePreview
@@ -66,6 +69,7 @@ class Map extends Component {
             </a>
             <SearchBar className="map-search-bar hidden-sm-down" />
           </div>
+          <MapCaption />
         </div>
         <CrimeDetail ref="detail" crime={this.props.selected} />
       </div>

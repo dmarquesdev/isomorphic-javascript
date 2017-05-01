@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
 import { FlatIcon } from './common';
-import { Categories } from '../constants';
+
+import {
+  Categories,
+  CategoryIcon
+} from '../constants';
 
 const CrimePreview = ({
   date,
@@ -11,7 +15,7 @@ const CrimePreview = ({
 }) => (
   <div className="preview-tip">
     <div className="preview-tip-icon">
-      <FlatIcon name={categoryToFlatIcon(category)} width={48} height={48} />
+      <FlatIcon name={CategoryIcon[category]} width={48} height={48} />
     </div>
 
     <div className="preview-tip-text">
@@ -25,12 +29,5 @@ const CrimePreview = ({
   </div>
 );
 
-
-const categoryToFlatIcon = (category) => {
-  switch(category) {
-    default:
-      return 'burglar';
-  }
-};
 
 export default CrimePreview;

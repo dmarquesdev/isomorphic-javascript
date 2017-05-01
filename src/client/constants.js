@@ -10,6 +10,28 @@ export const Categories = {
   morte_subita_natural: "Morte Súbita Natural"
 };
 
+export const CategoryIcon = {
+  lesao_corporal_seguida_de_morte: 'sword',
+  latrocinio: 'burglar',
+  morte_acidental: 'man-falling-off-a-precipice',
+  cadaver_sem_lesoes: 'photo',
+  suicidio_duvidoso: 'rope',
+  homicidio_doloso: 'blaster',
+  oposicao_policial: 'police',
+  morte_subita_natural: 'grave'
+};
+
+export const CategoryColor = {
+  LESAO_CORPORAL_SEGUIDA_DE_MORTE: '__pink',
+  LATROCINIO: '__orange',
+  MORTE_ACIDENTAL: '__blue',
+  CADAVER_SEM_LESOES: '__green',
+  SUICIDIO_DUVIDOSO: '__brown',
+  HOMICIDIO_DOLOSO: '__red',
+  OPOSICAO_POLICIAL: '__purple',
+  MORTE_SUBITA_NATURAL: '__yellow'
+};
+
 export const Genders = {
   masculino: 'Masculino',
   feminino: 'Feminino'
@@ -53,7 +75,7 @@ export const SearchTypes = {
 
   year: {
     label: 'Ano',
-    type: FIELD_NUMERIC, 
+    type: FIELD_NUMERIC,
     minValue: 2013,
     maxValue: 2015
   },

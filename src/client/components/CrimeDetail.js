@@ -12,7 +12,10 @@ import {
   Marker
 } from './map';
 
-import { Categories } from '../constants';
+import {
+  Categories,
+  CategoryIcon
+} from '../constants';
 
 class CrimeDetail extends Component {
   componentDidUpdate() {
@@ -46,15 +49,17 @@ class CrimeDetail extends Component {
       );
     }
 
+    const categoria = crime.categoria.toLowerCase();
+
     return (
       <Dialog ref="dialog" title="Detalhamento de Ocorrência">
         <div className="crime-detail">
           <Card className="crime-detail-resume">
-            <FlatIcon name="burglar" width={100} height={100} />
+            <FlatIcon name={CategoryIcon[categoria]} width={100} height={100} />
             <div className="resume">
               <h5>{`#${crime.idBO}`}</h5>
               <h5>{crime.partesEnvolvidas[0].nome}</h5>
-              <h5>{Categories[crime.categoria.toLowerCase()]}</h5>
+              <h5>{Categories[categoria]}</h5>
             </div>
           </Card>
 
