@@ -120,3 +120,8 @@ export const SearchTypes = {
     values: Educations
   }
 };
+
+export const ReportTypes = {
+  COLLECTION: 'COLLECTION',
+  SINGLE: 'SINGLE'
+};

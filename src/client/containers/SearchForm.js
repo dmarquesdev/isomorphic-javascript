@@ -12,7 +12,7 @@ import {
   FIELD_NUMERIC
 } from '../constants';
 
-import { fetchPoints } from '../actions';
+import { fetchPoints, setSearch } from '../actions';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ class SearchForm extends Component {
   }
 
   onSubmit(search, callback) {
+    this.props.setSearch(search);
     this.props.fetchPoints(search);
 
     if(callback) {
@@ -138,7 +139,7 @@ const validate = (values) => {
   return errors;
 };
 
-export default connect(null, { fetchPoints })(reduxForm({
+export default connect(null, { fetchPoints, setSearch })(reduxForm({
   form: 'SearchForm',
   fields: _.keys(SearchTypes),
   validate
