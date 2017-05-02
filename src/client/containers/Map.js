@@ -72,9 +72,38 @@ class Map extends Component {
       <div className="map-container">
         <SideBar
           ref="leftSidebar"
-          title="Pesquisa"
         >
-          <SearchForm onSearch={() => this.refs.leftSidebar.toggle()} />
+          <ul className="nav nav-tabs" role="tablist">
+            <li className="nav-item">
+              <a
+                href="#pesquisa-tab"
+                className="nav-link active"
+                data-toggle="tab"
+                role="tab"
+              >
+                Pesquisa
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                href="#dados-tab"
+                className="nav-link"
+                data-toggle="tab"
+                role="tab"
+              >
+                Dados
+              </a>
+            </li>
+          </ul>
+          <div className="tab-content">
+            <div id="pesquisa-tab" className="tab-pane active" role="tabpanel">
+              <SearchForm onSearch={() => this.refs.leftSidebar.toggle()} />
+            </div>
+
+            <div id="dados-tab" className="tab-pane" role="tabpanel">
+              <CrimeList />
+            </div>
+          </div>
         </SideBar>
         <div className="map">
           <GoogleMap markers={this.markerList(this.props.points)} />
@@ -88,14 +117,10 @@ class Map extends Component {
             <SearchBar className="map-search-bar hidden-sm-down" />
           </div>
           <MapCaption />
+          <a className="crime-list-btn" onClick={() => this.refs.rightSidebar.toggle()}>
+            <Icon name="th-list" />
+          </a>
         </div>
-        <button onClick={() => this.refs.rightSidebar.toggle()}>OLAR</button>
-        <SideBar
-          ref="rightSidebar"
-          title="Dados"
-        >
-          <CrimeList />
-        </SideBar>
 
         <Dialog
           ref="detail"

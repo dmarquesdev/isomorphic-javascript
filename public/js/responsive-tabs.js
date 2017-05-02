@@ -7,11 +7,11 @@ $(window).on('resize', responsiveTabs);
 
 function responsiveTabs() {
   if ((window.innerWidth < 768 || $('.crime-detail').hasClass('layout-report')) 
-    && !$('.tab-content').hasClass('small')) {
-    var parent = $('.tab-content').first().attr('id');
+    && !$('#crime-detail-infos.tab-content').hasClass('small')) {
+    var parent = $('#crime-detail-infos.tab-content').first().attr('id');
     var showAll = $('.crime-detail').hasClass('layout-report');
 
-    $('.tab-content').children().each(function(i, elem) {
+    $('#crime-detail-infos.tab-content').children().each(function(i, elem) {
       $(elem).wrap('<div class="item"></div>');
 
       elem = $(elem).parent();
@@ -43,12 +43,12 @@ function responsiveTabs() {
       );
     });
 
-    $('.tab-content').removeClass('big').addClass('small');
-  } else if (window.innerWidth >= 768 && !$('.tab-content').hasClass('big')) {
-    $('.tab-content .item').children(':last-child').unwrap();
-    $('.tab-content .tab-header').remove();
+    $('#crime-detail-infos.tab-content').removeClass('big').addClass('small');
+  } else if (window.innerWidth >= 768 && !$('#crime-detail-infos.tab-content').hasClass('big')) {
+    $('#crime-detail-infos.tab-content .item').children(':last-child').unwrap();
+    $('#crime-detail-infos.tab-content .tab-header').remove();
 
-    $('.tab-content').children().each(function(i, elem) {
+    $('#crime-detail-infos.tab-content').children().each(function(i, elem) {
       $(elem).children().attr('class', '').addClass(classBig);
 
       if (i === 0) {
@@ -56,6 +56,6 @@ function responsiveTabs() {
       }
     });
 
-    $('.tab-content').removeClass('small').addClass('big');
+    $('#crime-detail-infos.tab-content').removeClass('small').addClass('big');
   }
 }

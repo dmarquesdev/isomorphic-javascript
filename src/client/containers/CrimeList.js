@@ -16,7 +16,6 @@ import {
 class CrimeList extends Component {
   renderCrimeList() {
     return this.props.points.map((crime, i) => {
-      console.log(crime);
       const categoria = crime.categoria.toLowerCase();
       return (
         <Card key={crime.idBO} className="crime-card">
@@ -35,7 +34,7 @@ class CrimeList extends Component {
   render() {
     return (
       <div className="crime-list">
-        <div className="crime-list cards">
+        <div className="cards">
           {this.renderCrimeList()}
         </div>
         <Link to="/report" className="btn btn-success">

@@ -19,7 +19,6 @@ class SideBar extends Component {
     return this.state.visible && (
       <div className="sidebar">
         <div className="sidebar-header">
-          <h3 className="sidebar-title">{title}</h3>
           <a
             onClick={this.toggle.bind(this)}
             className="sidebar-close"
