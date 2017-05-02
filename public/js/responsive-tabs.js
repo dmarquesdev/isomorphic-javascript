@@ -6,8 +6,10 @@ var classBig = 'tab-pane';
 $(window).on('resize', responsiveTabs);
 
 function responsiveTabs() {
-  if (window.innerWidth < 768 && !$('.tab-content').hasClass('small')) {
+  if ((window.innerWidth < 768 || $('.crime-detail').hasClass('layout-report')) 
+    && !$('.tab-content').hasClass('small')) {
     var parent = $('.tab-content').first().attr('id');
+    var showAll = $('.crime-detail').hasClass('layout-report');
 
     $('.tab-content').children().each(function(i, elem) {
       $(elem).wrap('<div class="item"></div>');
@@ -15,12 +17,12 @@ function responsiveTabs() {
       elem = $(elem).parent();
 
       var classContent = 'class="collapsed"';
-      if (i === 0) {
+      if (i === 0 || showAll) {
         classContent = '';
       }
 
       $(elem).children().attr('class', '').addClass(classSmall);
-      if (i === 0) {
+      if (i === 0 || showAll) {
         $(elem).children().addClass(activeSmall);
       }
 
@@ -35,7 +37,7 @@ function responsiveTabs() {
         '   data-parent="' + parent + '"' +
         '   href="#' + target + '"' +
         ' >' +
-          header +
+        header +
         ' </a>' +
         '</div>'
       );

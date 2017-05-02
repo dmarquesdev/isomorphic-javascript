@@ -6,7 +6,8 @@ import { Icon } from '../components';
 import {
   fetchPoints,
   changeSearchTerm,
-  changeSearchType
+  changeSearchType,
+  setSearch
 } from '../actions';
 
 import {
@@ -31,6 +32,7 @@ class SearchBar extends Component {
 
     search[type] = term;
 
+    this.props.setSearch(search);
     this.props.fetchPoints(search);
     if(callback) {
       callback();
@@ -135,13 +137,14 @@ SearchBar.propTypes = {
   onSearch: PropTypes.func
 };
 
-const mapStateToProps = ({ searchBar }) => {
-  return { ...searchBar };
+const mapStateToProps = ({ search }) => {
+  return { type: search.type, term: search.term };
 }
 
 export default connect(
   mapStateToProps, {
     fetchPoints,
     changeSearchTerm,
-    changeSearchType
+    changeSearchType,
+    setSearch
   })(SearchBar);

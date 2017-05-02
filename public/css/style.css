@@ -337,9 +337,6 @@
 }
 
 /* Crime Detail */
-.crime-detail {
-  min-width: 50vw;
-}
 
 .crime-detail-resume {
   flex-direction: row;
@@ -413,4 +410,11 @@
 .map-caption ._button {
   height: 40px;
   cursor: pointer;
+}
+
+/* Report */
+.report {
+  border: 1px solid #ccc;
+  padding: 0px 20px;
+  margin: 20px auto;
 }

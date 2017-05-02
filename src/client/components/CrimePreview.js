@@ -15,7 +15,7 @@ const CrimePreview = ({
 }) => (
   <div className="preview-tip">
     <div className="preview-tip-icon">
-      <FlatIcon name={CategoryIcon[category]} width={48} height={48} />
+      <FlatIcon name={CategoryIcon[category.toLowerCase()]} width={48} height={48} />
     </div>
 
     <div className="preview-tip-text">

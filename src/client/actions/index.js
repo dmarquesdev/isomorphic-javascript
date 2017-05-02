@@ -1,2 +1,3 @@
 export * from './PointsActions';
-export * from './SearchBarActions';
+export * from './SearchActions';
+export * from './ReportActions';

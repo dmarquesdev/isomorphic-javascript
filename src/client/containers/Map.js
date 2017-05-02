@@ -8,18 +8,34 @@ import {
   CrimePreview,
   Icon,
   SideBar,
-  CrimeDetail
+  CrimeDetail,
+  Dialog
 } from '../components';
+
 import SearchBar from './SearchBar';
 import SearchForm from './SearchForm';
-import { fetchPoint } from '../actions';
-import { CategoryColor } from '../constants';
+import {
+  fetchPoint,
+  setSearch,
+  changeReportType
+} from '../actions';
+
+import {
+  CategoryColor,
+  ReportTypes
+} from '../constants';
 
 class Map extends Component {
   onMarkerClick(id) {
+    this.props.changeReportType(ReportTypes.SINGLE, id);
+
     this.props.fetchPoint(id, () => {
-        this.refs.detail.toggle();
+      this.refs.detail.toggle();
     });
+  }
+
+  onDetailClose() {
+    this.props.changeReportType(ReportTypes.COLLECTION);
   }
 
   markerList(points) {
@@ -71,7 +87,14 @@ class Map extends Component {
           </div>
           <MapCaption />
         </div>
-        <CrimeDetail ref="detail" crime={this.props.selected} />
+
+        <Dialog
+          ref="detail"
+          title="Detalhamento de Ocorrência"
+          onClose={this.onDetailClose.bind(this)}
+        >
+          <CrimeDetail crime={this.props.selected} />
+        </Dialog>
       </div>
     );
   }
@@ -86,4 +109,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchPoint })(Map);
+export default connect(mapStateToProps, {
+  fetchPoint,
+  setSearch,
+  changeReportType
+})(Map);
