@@ -14,6 +14,8 @@ import {
 
 import SearchBar from './SearchBar';
 import SearchForm from './SearchForm';
+import CrimeList from './CrimeList';
+
 import {
   fetchPoint,
   setSearch,
@@ -87,6 +89,13 @@ class Map extends Component {
           </div>
           <MapCaption />
         </div>
+        <button onClick={() => this.refs.rightSidebar.toggle()}>OLAR</button>
+        <SideBar
+          ref="rightSidebar"
+          title="Dados"
+        >
+          <CrimeList />
+        </SideBar>
 
         <Dialog
           ref="detail"
