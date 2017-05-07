@@ -31,9 +31,13 @@ class Map extends Component {
   onMarkerClick(id) {
     this.props.changeReportType(ReportTypes.SINGLE, id);
 
-    this.props.fetchPoint(id, () => {
+    this.props.fetchPoint(id, () => { 
       this.refs.detail.toggle();
     });
+  }
+
+  goToResults() {
+    $('.nav-tabs a[href="#dados-tab"]').tab('show');
   }
 
   onDetailClose() {
@@ -91,17 +95,17 @@ class Map extends Component {
                 data-toggle="tab"
                 role="tab"
               >
-                Dados
+                Resultados
               </a>
             </li>
           </ul>
           <div className="tab-content">
             <div id="pesquisa-tab" className="tab-pane active" role="tabpanel">
-              <SearchForm onSearch={() => this.refs.leftSidebar.toggle()} />
+              <SearchForm onSearch={this.goToResults.bind(this)} />
             </div>
 
             <div id="dados-tab" className="tab-pane" role="tabpanel">
-              <CrimeList />
+              <CrimeList onCardClick={this.onMarkerClick.bind(this)} />
             </div>
           </div>
         </SideBar>
@@ -114,12 +118,9 @@ class Map extends Component {
             >
               <Icon name="bars" />
             </a>
-            <SearchBar className="map-search-bar hidden-sm-down" />
+            <SearchBar onSearch={this.goToResults.bind(this)} className="map-search-bar hidden-sm-down" />
           </div>
           <MapCaption />
-          <a className="crime-list-btn" onClick={() => this.refs.rightSidebar.toggle()}>
-            <Icon name="th-list" />
-          </a>
         </div>
 
         <Dialog

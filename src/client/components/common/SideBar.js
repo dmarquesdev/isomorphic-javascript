@@ -9,6 +9,14 @@ class SideBar extends Component {
     this.state = { visible: false };
   }
 
+  show() {
+    this.setState({ visible: true });
+  }
+
+  hide() {
+    this.setState({ visible: false });
+  }
+
   toggle() {
     this.setState({ visible: !this.state.visible });
   }

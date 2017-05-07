@@ -61,6 +61,13 @@ class CrimeDetail extends Component {
     const hiddenClass = (layout === 'dialog') ?
       'hidden-sm-down' : 'hidden-xl-down';
 
+    const mapComponent = (layout === 'dialog') ? 
+      <GoogleMap markers={marker} zoom={8} /> :
+      null;
+
+    const mapContainerClass = (layout === 'dialog') ?
+      'crime-detail-map' : null;
+
     return (
       <div className={`crime-detail layout-${layout}`}>
         <Card className="crime-detail-resume">
@@ -72,7 +79,7 @@ class CrimeDetail extends Component {
           </div>
         </Card>
 
-        <Card className="crime-detail-map">
+        <Card className={mapContainerClass}>
           <div className="header">
             <h5><Icon name="map-marker" /> Local</h5>
           </div>
@@ -80,7 +87,7 @@ class CrimeDetail extends Component {
             <h6>{crime.local}</h6>
             <h6>{crime.tipoLocal}</h6>
           </div>
-          <GoogleMap markers={marker} zoom={8} />
+          {mapComponent}
         </Card>
 
         <Card className="crime-detail-tabs">

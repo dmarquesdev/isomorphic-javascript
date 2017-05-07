@@ -18,12 +18,16 @@ class CrimeList extends Component {
     return this.props.points.map((crime, i) => {
       const categoria = crime.categoria.toLowerCase();
       return (
-        <Card key={crime.idBO} className="crime-card">
-          <FlatIcon name={CategoryIcon[categoria]} width={50} height={50} />
+        <Card
+          key={crime.idBO}
+          className="crime-card"
+          onClick={() => this.props.onCardClick(crime.idBO)}
+        >
+          <FlatIcon name={CategoryIcon[categoria]} width={70} height={70} />
           <ul className="crime-card-info">
             <li>{Categories[categoria]}</li>
             <li><Icon name="map" /> {crime.local}</li>
-            <li><Icon name="calendar" /> {crime.data}</li>
+            <li><Icon name="calendar" /> {crime.dataOcorrencia}</li>
             <li><Icon name="user" /> {crime.nome}</li>
           </ul>
         </Card>
@@ -34,12 +38,12 @@ class CrimeList extends Component {
   render() {
     return (
       <div className="crime-list">
-        <div className="cards">
-          {this.renderCrimeList()}
-        </div>
         <Link to="/report" className="btn btn-success">
           <Icon name="print" /> Relatório
         </Link>
+        <div className="cards">
+          {this.renderCrimeList()}
+        </div>
       </div>
     );
   }
