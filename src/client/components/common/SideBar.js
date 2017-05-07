@@ -9,6 +9,14 @@ class SideBar extends Component {
     this.state = { visible: false };
   }
 
+  show() {
+    this.setState({ visible: true });
+  }
+
+  hide() {
+    this.setState({ visible: false });
+  }
+
   toggle() {
     this.setState({ visible: !this.state.visible });
   }
@@ -19,7 +27,6 @@ class SideBar extends Component {
     return this.state.visible && (
       <div className="sidebar">
         <div className="sidebar-header">
-          <h3 className="sidebar-title">{title}</h3>
           <a
             onClick={this.toggle.bind(this)}
             className="sidebar-close"

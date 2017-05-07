@@ -14,6 +14,8 @@ import {
 
 import SearchBar from './SearchBar';
 import SearchForm from './SearchForm';
+import CrimeList from './CrimeList';
+
 import {
   fetchPoint,
   setSearch,
@@ -29,9 +31,13 @@ class Map extends Component {
   onMarkerClick(id) {
     this.props.changeReportType(ReportTypes.SINGLE, id);
 
-    this.props.fetchPoint(id, () => {
+    this.props.fetchPoint(id, () => { 
       this.refs.detail.toggle();
     });
+  }
+
+  goToResults() {
+    $('.nav-tabs a[href="#dados-tab"]').tab('show');
   }
 
   onDetailClose() {
@@ -70,9 +76,38 @@ class Map extends Component {
       <div className="map-container">
         <SideBar
           ref="leftSidebar"
-          title="Pesquisa"
         >
-          <SearchForm onSearch={() => this.refs.leftSidebar.toggle()} />
+          <ul className="nav nav-tabs" role="tablist">
+            <li className="nav-item">
+              <a
+                href="#pesquisa-tab"
+                className="nav-link active"
+                data-toggle="tab"
+                role="tab"
+              >
+                Pesquisa
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                href="#dados-tab"
+                className="nav-link"
+                data-toggle="tab"
+                role="tab"
+              >
+                Resultados
+              </a>
+            </li>
+          </ul>
+          <div className="tab-content">
+            <div id="pesquisa-tab" className="tab-pane active" role="tabpanel">
+              <SearchForm onSearch={this.goToResults.bind(this)} />
+            </div>
+
+            <div id="dados-tab" className="tab-pane" role="tabpanel">
+              <CrimeList onCardClick={this.onMarkerClick.bind(this)} />
+            </div>
+          </div>
         </SideBar>
         <div className="map">
           <GoogleMap markers={this.markerList(this.props.points)} />
@@ -83,7 +118,7 @@ class Map extends Component {
             >
               <Icon name="bars" />
             </a>
-            <SearchBar className="map-search-bar hidden-sm-down" />
+            <SearchBar onSearch={this.goToResults.bind(this)} className="map-search-bar hidden-sm-down" />
           </div>
           <MapCaption />
         </div>
