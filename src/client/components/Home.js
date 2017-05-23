@@ -32,14 +32,15 @@ class Home extends Component {
 
             <div className="col-xs-12 col-md-10">
               <p>
-                Duis lobortis, risus eget blandit ultrices, dui dui pretium
-                velit, in aliquam velit orci a felis. Duis maximus, velit ut
-                efficitur fringilla, nibh purus malesuada eros, sed malesuada
-                velit leo sit amet dolor. Morbi maximus nec tortor sed sagittis.
-                Aliquam quis laoreet arcu. Proin dictum metus neque, sed
-                suscipit purus luctus non. Cras massa leo, rutrum sed egestas
-                et, facilisis eget justo. Vestibulum efficitur nulla nec felis
-                blandit fringilla.
+                Esta aplicação tem o intuito de fornecer uma pesquisa em uma base de dados 
+                com dados relativos a Boletins de Ocorrência registrados entre 2013 e 2015 
+                no estado de São Paulo. Para maiores informações sobre os dados acesse o 
+                artigo acadêmico relativo a ele em 
+                <a href="https://figshare.com/articles/A_Platform_of_Police_Reports/3856074/5">
+                   A Platform of Police Reports - ICWI 2016
+                 </a>. Todas as informações e tecnologias aqui utilizadas estão disponíveis
+                 em domínio público. Para entrar em contato com o autor desta aplicação, 
+                 acesse os links disponíveis no rodapé desta página.
               </p>
             </div>
           </div>
