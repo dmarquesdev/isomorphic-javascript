@@ -1,6 +1,7 @@
-export { default as App } from './App';
+export { default as CrimePreview } from './CrimePreview';
+export { default as Footer } from './Footer';
 export { default as Home } from './Home';
-export { default as SearchBar } from './SearchBar';
-export { default as FlatIcon } from './FlatIcon';
-export { default as GoogleMap } from './map/GoogleMap';
-export { default as Marker } from './map/Marker';
+export { default as CrimeDetail } from './CrimeDetail';
+export { default as Message } from './Message';
+export * from './common';
+export * from './map';
