@@ -36,7 +36,7 @@ export const fetchReportData = (properties) => {
       .catch((error) => {
         dispatch({
           type: FETCH_REPORT_DATA_FAILURE,
-          payload: error
+          payload: 'Erro ao processar pesquisa!'
         });
         dispatch({
           type: END_API_CALL

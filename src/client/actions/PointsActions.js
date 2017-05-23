@@ -26,10 +26,17 @@ export const fetchPoints = (properties) => {
     axios
       .get(`${API_URL}/points?${params}`)
       .then((response) => {
-        dispatch({
-          type: FETCH_POINTS_SUCCESS,
-          payload: response.data
-        });
+        if (response.data.length) {
+          dispatch({
+            type: FETCH_POINTS_SUCCESS,
+            payload: response.data
+          });
+        } else {
+          dispatch({
+            type: FETCH_POINTS_FAILURE,
+            payload: 'Nenhum resultado encontrado!'
+          });
+        }
         dispatch({
           type: END_API_CALL
         });
@@ -37,7 +44,7 @@ export const fetchPoints = (properties) => {
       .catch((error) => {
         dispatch({
           type: FETCH_POINTS_FAILURE,
-          payload: error
+          payload: 'Erro ao processar consulta!'
         });
         dispatch({
           type: END_API_CALL
@@ -67,7 +74,7 @@ export const fetchPoint = (id, callback) => (dispatch) => {
     .catch((error) => {
       dispatch({
         type: FETCH_POINT_FAILURE,
-        payload: error
+        payload: 'Erro ao processar dados da ocorrência!'
       });
       dispatch({
         type: END_API_CALL
